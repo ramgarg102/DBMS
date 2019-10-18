@@ -1,0 +1,7 @@
+-----------------PROJECT----------------
+LoginPage
+Cart Page
+Table Booking Page
+MySQL connection
+Landing page connection
+MySQL data encryption

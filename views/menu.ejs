@@ -1,0 +1,140 @@
+
+<!-- <meta charset="utf-8"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Savoureux Menu</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<%- include("partials/head-linkers.ejs"); -%>
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="navbar-brand page-scroll" href="#page-top">Savoureux</a> </div>
+      
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form action="/" method="GET">
+                        <button class="menu-btn" type="submit" class="menu-btn">Home</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="/login" method="POST">
+                        <button class="menu-btn" type="submit" class="menu-btn">Login</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="/menuPage" method="POST">
+                        <button class="menu-btn" type="submit" class="menu-btn">Menu</button>
+                    </form>
+                </li>
+                <li>
+                    <form action="/cart" method="POST">
+                        <button class="cart-btn" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                    </form>
+                </li>
+            </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+        </div>
+</nav>  
+<div id="restaurant-menu">
+    <div class="section-title text-center center">
+        <div class="overlay">
+        <h2>Menu</h2>
+        <hr>
+        <p>"There is no sincere love than the love of food."   -Geroge Bernard Shaw</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="menu-section">
+            <h2 class="menu-section-title">Breakfast & Starters</h2>
+            <hr>
+                <% for(var x=0;x<6;x++){ %>
+                    <form action="/additem" method="post">
+                        <div class="menu-item">
+                                <div class="menu-item-name">Custom meal.</div>
+                                <div class="menu-item-price"> $100 </div>
+                                <div class="menu-item-description"> This is a very good item.</div>
+                                <input id="custom-meal" type="text" name="item" value="Custom,100" hidden>
+                                <button type="submit" class="btn btn-custom btn-lg">Add to cart</button>
+                            </div>
+                    </form>
+                <% } %>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="menu-section">
+            <h2 class="menu-section-title">Main Course</h2>
+            <hr>
+            <% for(var x=0;x<5;x++){ %>
+                <form action="/additem" method="post">
+                <div class="menu-item">
+                    <div class="menu-item-name"> Delicious Dish 1</div>
+                    <div class="menu-item-price"> $45 </div>
+                    <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                    <input id="custom-meal" type="text" name="item" value="Delicious Dish 1,45" hidden>
+                    <button type="submit" class="btn btn-custom btn-lg">Add to cart</button>
+                </div>
+                </form>
+            <% } %>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="menu-section">
+            <h2 class="menu-section-title">Dinner</h2>
+            <hr>
+            <% for(var x=0;x<5;x++){ %>
+                <form action="/additem" method="post">
+                <div class="menu-item">
+                    <div class="menu-item-name"> Delicious Dish 2</div>
+                    <div class="menu-item-price"> $350 </div>
+                    <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                    <input id="custom-meal" type="text" name="item" value="Delicious Dish 2,350" hidden>
+                    <button type="submit" class="btn btn-custom btn-lg">Add to cart</button>
+                </div>
+                </form>
+            <% } %>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="menu-section">
+            <h2 class="menu-section-title">Coffee & Drinks</h2>
+            <hr>
+            <% for(var x=0;x<5;x++){ %>
+                <form action="/additem" method="post">
+                <div class="menu-item">
+                    <div class="menu-item-name"> Delicious Dish 3</div>
+                    <div class="menu-item-price"> $30 </div>
+                    <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                    <input id="custom-meal" type="text" name="item" value="Delicious Dish 3,30" hidden>
+                    <button type="submit" class="btn btn-custom btn-lg">Add to cart</button>
+                </div>
+                </form>
+            <% } %>
+            </div>
+        </div>
+        </div>
+    <div style="text-align: right;">
+        <form action="/cart" method="post">
+            <button type="submit" class="btn btn-custom btn-lg">Go to Cart</button>
+        </form>
+    </div>
+    </div>
+</div>
+<%- include("partials/footer.ejs"); -%>
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/SmoothScroll.js"></script>
+<script type="text/javascript" src="js/nivo-lightbox.js"></script>
+<script type="text/javascript" src="js/jquery.isotope.js"></script>
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script>
+<!-- <script type="text/javascript" src="js/contact_me.js"></script> -->
+<script type="text/javascript" src="js/main.js"></script>

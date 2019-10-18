@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<%- include("partials/head-linkers.ejs"); -%>
+<style>
+    body{
+        background-color: #eee;
+    }
+    div.jumbotron{
+        font-family: 'Raleway', sans-serif;
+        color: #8eb640;
+        padding: 20%;
+        margin-bottom: 0;
+    }
+    .item-section{
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+    }
+</style>
+<% if(items.length===0){ %>
+    <div class="jumbotron">
+        <h1>Your cart is empty.</h1>
+        <p>Click the button below to order food.</p>
+        <form action="/" method="GET">
+            <button type="submit" class="btn btn-custom btn-lg">Order Food Now</button>
+        </form>
+    </div>
+<% } else { %>      
+    <% items.forEach(item=>{ %>
+        <div class="item-section card w-50" style="box-shadow: 0 8px 6px -6px black;margin:20px;">
+            <div class="card-body">
+                <h5 class="card-title"><%= item.name %></h5>
+                <p class="card-text"><%= item.price %></p>
+                <a href="#" class="btn btn-primary">Button</a>
+            </div>
+        </div>
+   <% }); %>
+   <h1>Total Amount to be paid : <%= total %></h1>
+<% } %>
+<%- include("partials/footer.ejs"); -%>

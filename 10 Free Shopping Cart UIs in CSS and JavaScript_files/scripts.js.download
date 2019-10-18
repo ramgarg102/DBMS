@@ -1,0 +1,72 @@
+jQuery(document).ready(function($) {
+	$().navigation();
+});
+(function($) {
+	jQuery.fn.navigation = function(options) {
+		var settings = {
+			indicator: false,
+			speed: 0,
+			hideClickOut: true
+		}
+		$.extend(settings, options);
+		var menu = $(".navigation");
+		var lastScreenWidth = window.innerWidth;
+		if (settings.indicator == true) {
+			$(menu).find("a").each(function() {
+				if ($(this).siblings(".dropdown").length > 0) {
+					$(this).append();
+				}
+			});
+		}
+		$(menu).prepend();
+		screenSize();
+		$(window).resize(function() {
+			if (lastScreenWidth <= 0 && window.innerWidth > 0) {
+				bindHover();
+			}
+			if (lastScreenWidth > 0 && window.innerWidth <= 0) {
+				showCollapse();
+				bindClick();
+			}
+			lastScreenWidth = window.innerWidth;
+		});
+
+		function screenSize() {
+			if (window.innerWidth <= 0) {
+				showCollapse();
+				bindClick();
+			} else {
+				bindHover();
+			}
+		}
+		function bindHover() {
+			if (navigator.userAgent.match(/Mobi/i) || window.navigator.msMaxTouchPoints > 0) {
+				$(menu).find("a").on("click touchstart", function(e) {
+					e.stopPropagation();
+					e.preventDefault();
+					window.location.href = $(this).attr("href");
+					$(this).parent("li").siblings("li").find(".dropdown").stop(true, true).fadeOut(settings.speed);
+					if ($(this).siblings(".dropdown").css("display") == "none") {
+						$(this).siblings(".dropdown").stop(true, true).fadeIn(settings.speed);
+					} else {
+						$(this).siblings(".dropdown").stop(true, true).fadeOut(settings.speed);
+						$(this).siblings(".dropdown").find(".dropdown").stop(true, true).fadeOut(settings.speed);
+					}
+				});
+				if (settings.hideClickOut == true) {
+					$(document).bind("click.menu touchstart.menu", function(ev) {
+						if ($(ev.target).closest(menu).length == 0) {
+							$(menu).find(".dropdown").fadeOut(settings.speed);
+						}
+					});
+				}
+			} else {
+				$(menu).find("li").bind("mouseenter", function() {
+					$(this).children(".dropdown").stop(true, true).fadeIn(settings.speed);
+				}).bind("mouseleave", function() {
+					$(this).children(".dropdown").stop(true, true).fadeOut(settings.speed);
+				});
+			}
+		}
+	}
+}(jQuery));
